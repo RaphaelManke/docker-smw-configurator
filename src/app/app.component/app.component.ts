@@ -28,10 +28,10 @@ export class AppComponent implements OnInit {
   fourthFormGroup: FormGroup;
 
 
- protected extensions_installer = extensions_installer;
- protected extensions_core = extensions_core;
- protected extensions_smw = extensions_smw;
- protected skins = skins;
+  protected extensions_installer = extensions_installer;
+  protected extensions_core = extensions_core;
+  protected extensions_smw = extensions_smw;
+  protected skins = skins;
 
   constructor(private formBuilder: FormBuilder) {  }
 
@@ -50,9 +50,11 @@ export class AppComponent implements OnInit {
     });
     this.fourthFormGroup = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', [Validators.required]],
+      password: ['', Validators.required],
+      smw_instance_name: ['', Validators.required],
       username_database: [''],
-      password_database: ['']
+      password_database: [''],
+      name_database: ['']
     });
   }
 
@@ -70,7 +72,8 @@ export class AppComponent implements OnInit {
     } else {
       database = '\nSMW_DATABASE_USER=' + this.fourthFormGroup.value.username_database + '\nSMW_DATABASE_PASSWORD=' + this.fourthFormGroup.value.password_database;
     }
-    this.env += user + database + '\nSMW_INSTANCE_NAME=Example Semantic Media Wiki build for the KIT\nSMW_LANGUAGE=de';
+
+    this.env += user + database + '\nSMW_INSTANCE_NAME=' + this.fourthFormGroup.value.smw_instance_name + '\nSMW_LANGUAGE=de';
 
     this.submitHelper(this.firstFormGroup.value.extension_installer);
     this.submitHelper(this.firstFormGroup.value.extension_core);
@@ -80,12 +83,14 @@ export class AppComponent implements OnInit {
 
     const skin = '"skins" : [\n { \n "name" : "' + this.thirdFormGroup.value.skin + '",' +
       '\n "url" : "https://github.com/wikimedia/mediawiki-skins-' + this.thirdFormGroup.value.skin + '",' +
-      '\n "help" : "https://www.mediawiki.org/wiki/Skin:' + this.thirdFormGroup.value.skin + '"\n}\n]';
+      '\n "help" : "https://www.mediawiki.org/wiki/Skin:' + this.thirdFormGroup.value.skin +
+      '",\n "default" : 1\n}\n]';
 
     const all_extensions = '{\n "extensions" : [' + this.extensions_file.substring(0, this.extensions_file.length - 1) + '\n],\n' + skin + '\n}';
 
-    zip.file('extension.json', all_extensions);
+    zip.file('extensions.json', all_extensions);
     zip.file('.env', this.env);
+    zip.folder('docker-entrypoint-intitdb.d');
     zip.generateAsync({type: 'blob'})
       .then(function (content) {
         fileSaver.saveAs(content, 'smw_confinguration.zip');
@@ -100,7 +105,7 @@ export class AppComponent implements OnInit {
       i = i.replace(/ +/g, '');
 
       if (i.length > 0) {
-        result += '\n{\n "name" : "' + i + '",\n "url" : "https://gerrit.wikimedia.org/r/p/mediawiki/extensions/' + i + '.git",\n "help" : "https://www.mediawiki.org/wiki/Extension:' + i + '"\n },';
+        result += '\n{\n "name" : "' + i + '",\n "url" : "https://github.com/wikimedia/mediawiki-skins-' + i + '.git",\n "help" : "https://www.mediawiki.org/wiki/Extension:' + i + '"\n },';
       }
     }
     this.extensions_file += result;

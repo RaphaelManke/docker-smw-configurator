@@ -80,9 +80,15 @@
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
         <div>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="smw instance name" class="form-control" formControlName="smw_instance_name">
+          </mat-form-field>
+        </div>
+        <div>
           <mat-slide-toggle (click)="changeVisible()">Here you can specify a database username and password. By default both is generated for you.</mat-slide-toggle>
         </div>
         <div *ngIf="visible">
+          <p></p>
           <mat-form-field class="example-full-width">
             <input matInput placeholder="database username" class="form-control" formControlName="username_database">
           </mat-form-field>
@@ -91,6 +97,11 @@
             <input matInput placeholder="database password" [type]="!hide_database ? 'password' : 'text'" class="form-control" formControlName="password_database">
             <mat-icon matSuffix (click)="hide_database = !hide_database">{{hide_database ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
+          <div>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="database name" class="form-control" formControlName="name_database">
+            </mat-form-field>
+          </div>
         </div>
 
         <div>
