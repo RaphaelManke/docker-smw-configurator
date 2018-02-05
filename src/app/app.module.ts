@@ -6,9 +6,10 @@ import { AppComponent } from './app.component/app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule,
-  MatStepperModule
+  MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSlideToggleModule,
+  MatStepperModule, MatTooltipModule
 } from '@angular/material';
+import {RouterModule, Routes} from '@angular/router';
 
 
 
@@ -27,8 +28,11 @@ import {
     MatButtonModule,
     MatInputModule,
     MatIconModule,
-    MatStepperModule
-  ],
+    MatStepperModule,
+    MatButtonModule,
+    MatSlideToggleModule,
+    MatTooltipModule
+],
   providers: [
   ],
   bootstrap: [AppComponent]

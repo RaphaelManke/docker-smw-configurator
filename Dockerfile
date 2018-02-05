@@ -1,5 +1,5 @@
-# Create image based on the official Node 6 image from dockerhub
-FROM node:6
+# Create image based on Node 8
+FROM node:8
 
 # Create a directory where our app will be placed
 RUN mkdir -p /usr/src/app
@@ -11,7 +11,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app
 
 # Install dependecies
-RUN npm install --silent
+RUN npm install --no-progress --silent
 
 # Install prebuild material components
 RUN npm install --save @angular/material @angular/cdk --silent
@@ -21,6 +21,10 @@ RUN npm install --save hammerjs --silent
 # Install FileSaver + typescript definitions for it
 RUN npm install file-saver --save --silent
 RUN npm install @types/file-saver --save-dev --silent
+
+#Install JSZip + typescript definitons for it
+RUN npm install jszip --silent
+RUN npm install --save @types/jszip --silent
 
 # Get all the code needed to run the app
 COPY . /usr/src/app
