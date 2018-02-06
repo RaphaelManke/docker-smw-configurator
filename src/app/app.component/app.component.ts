@@ -119,7 +119,7 @@ export class AppComponent implements OnInit {
       i = i.replace(/ +/g, '');
 
       if (i.length > 0) {
-        result += '\n{\n "name" : "' + i + '",\n "url" : "https://github.com/wikimedia/mediawiki-skins-' + i + '.git",\n "help" : "https://www.mediawiki.org/wiki/Extension:' + i + '"\n },';
+        result += '\n{\n "name" : "' + i + '",\n "url" : "https://github.com/wikimedia/mediawiki-extensions-' + i + '.git",\n "help" : "https://www.mediawiki.org/wiki/Extension:' + i + '"\n },';
       }
     }
     this.extensions_file += result;
