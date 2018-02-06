@@ -5,7 +5,6 @@
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Select Wiki Extensions</ng-template>
         <h4>Here is a selection of Must Have Extension suggested by the Media Wiki Founduation</h4>
-        <!-- For more information <button mat-button [routerLink]="['./mediawiki.org/wiki/Suggestions_for_extensions_to_be_integrated']">Click here</button> -->
         <h5>These extensions could be integrated with the installer</h5>
         <mat-selection-list #extensions class="form-control" formControlName="extension_installer">
           <mat-list-option *ngFor="let extension of extensions_installer" [value]="extension">
@@ -33,7 +32,6 @@
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Select SMW Extensions</ng-template>
         <h4>Here are our supported semantic media wiki extensions</h4>
-        <!-- For more information <button mat-button [routerLink]="['./mediawiki.org/wiki/Suggestions_for_extensions_to_be_integrated']">Click here</button> -->
         <mat-selection-list #extensions class="form-control" formControlName="extension_smw">
           <mat-list-option *ngFor="let extension of extensions_smw" [value]="extension">
             {{extension}}
@@ -54,7 +52,6 @@
       <form [formGroup]="thirdFormGroup">
         <ng-template matStepLabel>Select a skin</ng-template>
         <h4>Please select <span [ngStyle]="{'color': 'red'}">one</span> skin</h4>
-        <!-- For more information <button mat-button [routerLink]="['./mediawiki.org/wiki/Suggestions_for_extensions_to_be_integrated']">Click here</button> -->
         <mat-selection-list #extensions class="form-control" formControlName="skin">
           <mat-list-option *ngFor="let skin of skins" [value]="skin">
             {{skin}}

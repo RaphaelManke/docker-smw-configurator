@@ -10,6 +10,7 @@ import {
   MatStepperModule, MatTooltipModule
 } from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -31,7 +32,8 @@ import {RouterModule, Routes} from '@angular/router';
     MatStepperModule,
     MatButtonModule,
     MatSlideToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    HttpClientModule
 ],
   providers: [
   ],

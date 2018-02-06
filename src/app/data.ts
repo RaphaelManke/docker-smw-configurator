@@ -1,11 +1,4 @@
-export class Data {
-  name: string;
-  url: string;
-}
-
-export class User {
-  extension = '';
-}
+export class Data {}
 
   export const extensions_installer = [
     'AbuseFilter',
